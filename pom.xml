@@ -1,0 +1,119 @@
+<!-- Loan Management Project - Java 21 with Testing & Quality Tools -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <!-- Project Coordinates -->
+  <groupId>com.example</groupId>
+  <artifactId>loan-project</artifactId>
+  <version>1.1-SNAPSHOT</version>
+  
+  <!-- Java 21 + UTF-8 Configuration -->
+  <properties>
+    <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <junit.jupiter.version>5.10.0</junit.jupiter.version>
+    <maven.surefire.plugin.version>3.2.5</maven.surefire.plugin.version>
+    <jacoco.version>0.8.10</jacoco.version>
+    <pitest.version>1.9.12</pitest.version>
+  </properties>
+  
+  <dependencies>
+    <!-- Unit Testing with JUnit 5 -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- Logging API -->
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>2.0.9</version>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <!-- Java 21 Compiler -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.11.0</version>
+        <configuration>
+          <release>21</release>
+        </configuration>
+      </plugin>
+      
+      <!-- Run JUnit Tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.plugin.version}</version>
+        <configuration>
+          <includeDependencies>false</includeDependencies>
+          <forkCount>1</forkCount>
+          <reuseForks>true</reuseForks>
+        </configuration>
+      </plugin>
+      
+      <!-- Code Coverage Report -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      
+      <!-- Mutation Testing for Test Quality -->
+      <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>${pitest.version}</version>
+        <configuration>
+          <targetClasses>
+            <param>com.example.loan.*</param>
+          </targetClasses>
+          <targetTests>
+            <param>com.example.loan.*</param>
+          </targetTests>
+          <outputFormats>
+            <param>HTML</param>
+          </outputFormats>
+          <mutators>
+            <param>DEFAULTS</param>
+          </mutators>
+          <threads>4</threads>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>${jacoco.version}</version>
+      </plugin>
+    </plugins>
+  </reporting>
+</project>

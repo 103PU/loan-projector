@@ -1,0 +1,15 @@
+Conversation with LLM Link:
+
+-- school gmail --
+https://chatgpt.com/share/691c418b-4894-8002-a832-6b16055ebbb8 ( create core and main updates for project)
+
+-- personal gmail --
+https://chatgpt.com/share/691c41cf-4e20-8007-be9d-8547a4042a1c ( compare and learn about unit testing and related infomation )
+
+https://chatgpt.com/share/691c4207-d2a8-800f-8e0a-62c4d6c22be3 (update script, common files, commands and pom.xml)
+
+https://claude.ai/public/artifacts/d5c5a658-5929-4263-bfac-1be613132a48 (added specific and essential commands )
+
+Project Source:
+
+https://www.mediafire.com/file/hdskpfzfgqdci39/loan-projector.zip/file

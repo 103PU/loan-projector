@@ -1,0 +1,38 @@
+@startuml
+title Loan Project - Class Diagram (with concise comments)
+
+// Utility class for performing loan calculations
+class LoanCalculator {
+  +convertAnnualRateToMonthly(annualPercent: BigDecimal): BigDecimal  <<converts annual % to monthly rate>>
+  +calcMonthlyPayment(principal: BigDecimal, annualPercent: BigDecimal, months: int): BigDecimal  <<computes EMI>>
+  +generateSchedule(principal: BigDecimal, annualPercent: BigDecimal, months: int): List<AmortizationEntry>  <<creates amortization table>>
+  +computeTotalPaid(schedule: List<AmortizationEntry>): BigDecimal  <<sums all payments>>
+}
+
+// Represents one row in the amortization schedule
+class AmortizationEntry {
+  -month: int
+  -payment: BigDecimal
+  -interest: BigDecimal
+  -principal: BigDecimal
+  -remainingBalance: BigDecimal
+  +getMonth(): int
+  +getPayment(): BigDecimal
+  +getInterest(): BigDecimal
+  +getPrincipal(): BigDecimal
+  +getRemainingBalance(): BigDecimal
+}
+
+// Validation helper for input checking
+
+class ValidationUtils {
+  +requireNonNull(obj: Object, name: String): void  <<throws if null>>
+  +requirePositive(value: BigDecimal, name: String): void <<requires > 0>>
+  +requireNonNegative(value: BigDecimal, name: String): void <<requires >= 0>>
+  +requirePositiveMonths(months: int, name: String): void <<months must be > 0>>
+}
+
+LoanCalculator --> AmortizationEntry : "creates"
+LoanCalculator --> ValidationUtils : "validates input"
+
+@enduml
